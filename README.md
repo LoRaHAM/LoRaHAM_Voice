@@ -69,6 +69,8 @@ loraham_voice uses 4 IPC (inter process communication) UNIX-Sockets for two LoRa
 After start, you will see an overview of usable audio devices. 
 Use "pulse" for pulse-audio
 
+    <img src="https://github.com/LoRaHAM/LoRaHAM_Voice/blob/main/Screenshot_LoRaHAM_Voice.png" alt="LoRaHAM_Voice mainscreen" width="300" height="auto"><img src="https://github.com/LoRaHAM/LoRaHAM_Voice/blob/main/Screenshot_LoRaHAM_Voice_devices.png" alt="LoRaHAM_Voice audio" width="300" height="auto">
+
 # Warnings
 This code is provided at your own risk and responsibility. This code is experimental.
 For radio amateur or laboratory use only.
@@ -179,6 +181,12 @@ loraham_voice verwendet 4 IPC (Inter-Process Communication) UNIX-Sockets für zw
     - DATA433_SOCKET "/tmp/lora433.sock"
     - CONF868_SOCKET "/tmp/loraconf868.sock"
     - CONF433_SOCKET "/tmp/loraconf433.sock"
+
+    
+Nach dem Start sehen Sie die Auswahl der Audiogeräte.
+Verwenden Sie "pulse" für pulse-audio
+
+    <img src="https://github.com/LoRaHAM/LoRaHAM_Voice/blob/main/Screenshot_LoRaHAM_Voice.png" alt="LoRaHAM_Voice mainscreen" width="300" height="auto"><img src="https://github.com/LoRaHAM/LoRaHAM_Voice/blob/main/Screenshot_LoRaHAM_Voice_devices.png" alt="LoRaHAM_Voice audio" width="300" height="auto">
     
 
 # Warnungen
