@@ -6,7 +6,7 @@ LoRaHAM_Voice is a software for the LoRaHAM_Pi hardware upgrade project and LoRa
 
 First code for the LoRaHAM Pi hardware | https://www.loraham.de/produkt/loraham-pi/
 
-U need an Audio-Adapter with Microphone and Speaker or an BT-Headset! Not all Headsets will support bei RPi OS. Plantronics ML18 works, EOTE14 not (both tested)
+U need an Audio-Adapter with Microphone and Speaker or an BT-Headset! Not all Headsets will support bei RPi OS. ML18 works, EOTE14 not (both tested)
 
 <img src="https://github.com/LoRaHAM/LoRaHAM_Pi/blob/main/LoRaHAM_P1_3.jpg" alt="LoRaHAM_Pi" width="300" height="auto"><img src="https://github.com/LoRaHAM/LoRaHAM_Ressources/blob/main/LoRaHAM_Cartridge_for_pi500.png" alt="LoRaHAM Cartridge" width="300" height="auto">
 
@@ -113,6 +113,8 @@ This project is licensed under **GNU GPL v3** with additional commercial restric
 LoRaHAM_Voice ist eine Software für das LoRaHAM_Pi-Hardware-Upgrade-Projekt und LoRaHAM-Module für Funkamateure, die einen leistungsstarken LoRa-Betrieb mit großer Reichweite auf einem Einplatinencomputer ermöglicht. Der Daemon ist ein Gerätetreiber, der es Benutzern (ohne jegliche Kenntnisse in der Hardwareprogrammierung) ermöglicht, das System einfach zu bedienen.
 
 Erster Code für die LoRaHAM Pi Hardware | https://www.loraham.de/produkt/loraham-pi/
+
+Sie benötigen einen Audioadapter mit Mikrofon und Lautsprecher oder ein Bluetooth-Headset! Nicht alle Headsets werden von RPi OS unterstützt. Das ML18 funktioniert, das EOTE14 hingegen nicht (beide getestet).
 
 <img src="https://github.com/LoRaHAM/LoRaHAM_Pi/blob/main/LoRaHAM_P1_3.jpg" alt="LoRaHAM_Pi" width="300" height="auto"><img src="https://github.com/LoRaHAM/LoRaHAM_Ressources/blob/main/LoRaHAM_Cartridge_for_pi500.png" alt="LoRaHAM Cartridge" width="300" height="auto">
 
