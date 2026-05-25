@@ -16,6 +16,10 @@ U need an Audio-Adapter with Microphone and Speaker or an BT-Headset! Not all He
 
 # Need follow parts on the Raspberry Pi image:
 
+    1st: The Daemon:
+    https://github.com/LoRaHAM/LoRaHAM_Daemon
+
+    2nd:
     sudo apt update
     sudo apt install libcodec2-dev -y
     sudo apt install libasound2-dev -y
@@ -125,6 +129,10 @@ Sie benötigen einen Audioadapter mit Mikrofon und Lautsprecher oder ein Bluetoo
     
 # Anderenfalls werden folgende Pakete auf dem Raspberry Pi Image benötigt:
 
+    1.:
+    https://github.com/LoRaHAM/LoRaHAM_Daemon
+    
+    2.:
     sudo apt update
     sudo apt install libcodec2-dev -y
     sudo apt install libasound2-dev -y
