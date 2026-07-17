@@ -458,9 +458,20 @@ static int connect_unix(const char *path) {
     if (connect(fd,(struct sockaddr*)&a,sizeof(a))<0) { close(fd); return -1; }
     return fd;
 }
+/* Daemon-Socket-Pfadwahl: systemd-Deployments servieren die Sockets unter /run/loraham, direkte/
+ * Benutzer-Starts unter /tmp (LORAHAM_SOCKET_DIR). Nimm den Pfad, unter dem der Daemon-Socket
+ * tatsaechlich existiert, sonst den /tmp-Fallback. */
+static const char *loraham_sockpath(const char *runp, const char *tmpp) {
+    struct stat st;
+    return (stat(runp, &st) == 0 && S_ISSOCK(st.st_mode)) ? runp : tmpp;
+}
 static int sockets_connect(void) {
-    const char *dsock = CFG.active_band ? "/tmp/lora868.sock" : "/tmp/lora433.sock";
-    const char *csock = CFG.active_band ? "/tmp/loraconf868.sock" : "/tmp/loraconf433.sock";
+    const char *dsock = CFG.active_band
+        ? loraham_sockpath("/run/loraham/lora868.sock", "/tmp/lora868.sock")
+        : loraham_sockpath("/run/loraham/lora433.sock", "/tmp/lora433.sock");
+    const char *csock = CFG.active_band
+        ? loraham_sockpath("/run/loraham/loraconf868.sock", "/tmp/loraconf868.sock")
+        : loraham_sockpath("/run/loraham/loraconf433.sock", "/tmp/loraconf433.sock");
     data_fd = connect_unix(dsock);
     if (data_fd<0) return 0;
     fcntl(data_fd, F_SETFL, fcntl(data_fd,F_GETFL,0)|O_NONBLOCK);
