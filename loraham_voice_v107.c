@@ -57,8 +57,13 @@
 #define TX_EXTRA_DELAY_MS    50
 #define AIRTIME_MARGIN_PCT   10
 
-/* GTK muss vor ncurses includiert werden */
+/* GTK muss vor ncurses includiert werden.
+ * -DNO_GTK baut eine reine ncurses-CLI-Variante ohne GTK/X11-Abhaengigkeit
+ * (Headless-/Lite-Systeme):
+ *   gcc -DNO_GTK -o loraham_voice loraham_voice_v107.c -lcodec2 -lasound -lncurses -lpthread -lm */
+#ifndef NO_GTK
 #include <gtk/gtk.h>
+#endif
 
 /* ncurses: _XOPEN_SOURCE_EXTENDED verhindert Kollisionen */
 #define _XOPEN_SOURCE_EXTENDED 1
@@ -1198,8 +1203,9 @@ static void cli_main(void) {
 }
 
 /* ================================================================
- * GTK UI
+ * GTK UI  (komplett ausgeblendet bei -DNO_GTK)
  * ================================================================ */
+#ifndef NO_GTK
 static GtkWidget *g_win=NULL;
 static GtkWidget *g_btn_ptt=NULL;
 static GtkWidget *g_lbl_status=NULL;
@@ -1605,6 +1611,7 @@ static void gui_main(int *argc, char ***argv) {
     gtk_main();
     app_run=0;
 }
+#endif /* NO_GTK */
 
 /* ================================================================
  * Audio-Gerät auswählen (gemeinsam CLI + GUI)
@@ -1643,11 +1650,19 @@ int main(int argc, char **argv) {
     config_init_path(argv[0]);
     config_load();
 
+#ifdef NO_GTK
+    use_gui = 0;   /* ohne GTK gebaut: immer ncurses-CLI (auch mit --gui) */
+    for (int i=1;i<argc;i++) {
+        if (!strcmp(argv[i],"--gui"))
+            fprintf(stderr,"Hinweis: ohne GTK gebaut - starte CLI\n");
+    }
+#else
     use_gui = (getenv("DISPLAY")!=NULL || getenv("WAYLAND_DISPLAY")!=NULL);
     for (int i=1;i<argc;i++) {
         if (!strcmp(argv[i],"--cli")) use_gui=0;
         if (!strcmp(argv[i],"--gui")) use_gui=1;
     }
+#endif
 
     /* Codec2 initialisieren */
     if (!c2_init(CFG.codec_mode_idx)) {
@@ -1663,9 +1678,12 @@ int main(int argc, char **argv) {
     else
         apply_lora_params();
 
+#ifndef NO_GTK
     if (use_gui) {
         gui_main(&argc,&argv);
-    } else {
+    } else
+#endif
+    {
         /* CLI: ALSA vor ncurses öffnen */
         pcm_cap  = alsa_open(CFG.audio_capture,  SND_PCM_STREAM_CAPTURE,  c2_spf);
         pcm_play = alsa_open(CFG.audio_playback, SND_PCM_STREAM_PLAYBACK, c2_spf);
